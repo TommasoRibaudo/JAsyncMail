@@ -31,7 +31,7 @@ public class JAsyncMailTester {
     private static void sendingAnEmail() {
         printTime("Sending an email", true);
         EmailSender emailSenderInstance = EmailSender.getInstance();
-        emailSenderInstance.sendEmail(new Mail("testarooni.db@gmail.com", "sendingAnEmailTest subject", "sendingAnEmailTest Body"));
+        emailSenderInstance.sendEmail(new Mail("[RECIPIENT_EMAIL_HERE]", "sendingAnEmailTest subject", "sendingAnEmailTest Body"));
         printTime("Sending an email Test", false);
     }
 
@@ -39,7 +39,7 @@ public class JAsyncMailTester {
         printTime("Sending multiple emails", true);
         EmailSender emailSenderInstance = EmailSender.getInstance();
         for (int i = 0; i < 10; i++) {
-            emailSenderInstance.sendEmail(new Mail("testarooni.db@gmail.com", "sendingMultipleEmails subject #" + i, "sendingMultipleEmails Body #" + i));
+            emailSenderInstance.sendEmail(new Mail("[RECIPIENT_EMAIL_HERE]", "sendingMultipleEmails subject #" + i, "sendingMultipleEmails Body #" + i));
         }
         printTime("Sending multiple emails", false);
     }
