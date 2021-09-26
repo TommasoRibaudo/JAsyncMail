@@ -1,4 +1,4 @@
-package org.tom.jasyncmail.emailsender;
+package org.tom.jasyncmail.emailsender.threads;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

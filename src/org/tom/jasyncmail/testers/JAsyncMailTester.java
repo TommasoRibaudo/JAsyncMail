@@ -5,7 +5,7 @@ import org.tom.jasyncmail.model.Mail;
 import org.tom.jasyncmail.model.Properties;
 
 /**
- *
+ * Remember to put your own email where asked
  * @author Tommaso Ribaudo
  */
 public class JAsyncMailTester {
