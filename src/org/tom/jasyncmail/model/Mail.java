@@ -3,7 +3,6 @@ package org.tom.jasyncmail.model;
 import java.io.Serializable;
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.AddressException;
@@ -39,20 +38,24 @@ public class Mail implements Serializable {
         return body;
     }
 
-    public void send(Properties properties) throws AddressException, MessagingException {
-        Session session = Session.getInstance(properties.toProperties(), new javax.mail.Authenticator() {
-            @Override
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(properties.getEmail(), properties.getPassword());
-            }
-        });
-        // Used to debug SMTP issues
-        //session.setDebug(true);trues
+    @Deprecated
+    public void send(Session session) throws AddressException, MessagingException {
         MimeMessage message = new MimeMessage(session);
-        message.setFrom(new InternetAddress(properties.getEmail()));
+        message.setFrom(new InternetAddress(Properties.getInstance().getEmail()));
         message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
         message.setSubject(subject);
         message.setText(body);
-        Transport.send(message);
+        Transport t = session.getTransport();
+        t.connect();
+        t.sendMessage(message, message.getAllRecipients());
+    }
+    
+    public MimeMessage getMimeMessage(Session session) throws AddressException, MessagingException{
+        MimeMessage message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(Properties.getInstance().getEmail()));
+        message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+        message.setSubject(subject);
+        message.setText(body);
+        return message;
     }
 }

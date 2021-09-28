@@ -61,7 +61,7 @@ public class Properties implements Serializable {
 
     public static Properties getInstance() {
         if (INSTANCE == null) {
-            throw new IllegalStateException("Properties not initialized");
+            throw new IllegalStateException("Properties not initialized.\n");
         }
         return INSTANCE;
     }
