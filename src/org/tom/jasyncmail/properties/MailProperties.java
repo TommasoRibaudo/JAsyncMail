@@ -1,4 +1,4 @@
-package org.tom.jasyncmail.model;
+package org.tom.jasyncmail.properties;
 
 import java.io.Serializable;
 
@@ -6,10 +6,10 @@ import java.io.Serializable;
  *
  * @author Tommaso Ribaudo
  */
-public class Properties implements Serializable {
+public class MailProperties implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private static Properties INSTANCE = null;
+    private static MailProperties INSTANCE = null;
     private final String email;
     private final String password;
     private final String host;
@@ -27,7 +27,7 @@ public class Properties implements Serializable {
      * @param host the host of the email
      * @param port the port of the email
      */
-    public Properties(String email, String password, String host, String port) {
+    public MailProperties(String email, String password, String host, String port) {
         this.email = email;
         this.password = password;
         this.host = host;
@@ -48,7 +48,7 @@ public class Properties implements Serializable {
      * @param ssl true if the email uses ssl
      * @param auth true if the email uses authentication
      */
-    public Properties(String email, String password, String host, String port, boolean starttls, boolean ssl, boolean auth) {
+    public MailProperties(String email, String password, String host, String port, boolean starttls, boolean ssl, boolean auth) {
         this.email = email;
         this.password = password;
         this.host = host;
@@ -59,7 +59,7 @@ public class Properties implements Serializable {
         INSTANCE = this;
     }
 
-    public static Properties getInstance() {
+    public static MailProperties getInstance() {
         if (INSTANCE == null) {
             throw new IllegalStateException("Properties not initialized.\n");
         }

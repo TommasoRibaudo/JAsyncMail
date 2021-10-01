@@ -4,7 +4,7 @@ import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import org.tom.jasyncmail.emailsender.thread.EmailSenderThread;
 import org.tom.jasyncmail.model.Mail;
-import org.tom.jasyncmail.model.Properties;
+import org.tom.jasyncmail.properties.MailProperties;
 
 /**
  *
@@ -20,12 +20,7 @@ public class EmailSender {
      * instance of EmailSender
      */
     private static EmailSender instance = null;
-    //public static int MAX_NUMBER_OF_THREADS = 10; //TODO can you change this number from the tester?
-    /**
-     * Used by helper threads (Sender) to run their routine checks
-     */
-    public static int TICK_TIME = 60000;
-    public static int MAX_EMAILS_PER_BATCH = 50;
+    
     //Helper thread
     private EmailSenderThread sender;
 
@@ -34,7 +29,7 @@ public class EmailSender {
     private EmailSender() {
         this.sender = new EmailSenderThread();
         this.sender.setName("Sender-Thread");
-        Properties properties = Properties.getInstance();
+        MailProperties properties = MailProperties.getInstance();
         session = Session.getInstance(properties.toProperties(), new javax.mail.Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -46,7 +41,7 @@ public class EmailSender {
 
     public static EmailSender getInstance() {
         //check if properties are set
-        if (Properties.getInstance() != null) //if null it will throw an error by itself
+        if (MailProperties.getInstance() != null) //if null it will throw an error by itself
         {
             if (instance == null) {
                 instance = new EmailSender();
