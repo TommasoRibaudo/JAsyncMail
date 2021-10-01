@@ -19,6 +19,7 @@
  The first step is to instantiate the properties that will be used to send the mail. This is done by calling the constructor of the MailProperties class.
  
  `MailProperties properties = new MailProperties(SENDER_EMAIL, SENDER_PASSWORD, "smtp.gmail.com", "587"); //only set once at the beginning of your application` 
+ 
  *Note: You need to instantiate the properties only once, before the EmailSender is instantiated.*
 
  The second step is to instantiate the EmailSender. This is done by calling its `getInstance()` method.
