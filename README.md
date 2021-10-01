@@ -11,10 +11,9 @@
 ## Usage
 
  The user will interact with the API through the following classes:
+    
     - EmailSender
-    
     - MailProperties
-    
     - Mail
 
  The first step is to instantiate the properties that will be used to send the mail. This is done by calling the constructor of the MailProperties class.
